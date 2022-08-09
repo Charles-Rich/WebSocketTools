@@ -17,7 +17,7 @@ namespace WebSocketTools
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            if (this.btnConnect.Text.Equals("ï¿½ï¿½ï¿½ï¿½")) 
+            if (this.btnConnect.Text.Equals("Á¬½Ó")) 
             {
                 WebSocketConnect();
             }
@@ -28,12 +28,12 @@ namespace WebSocketTools
             webSocketClient = await SocketBuilderFactory.GetWebSocketClientBuilder(this.txtUrl.Text, int.Parse(txtPort.Text))
                 .OnClientStarted(client =>
                 {
-                    Console.WriteLine($"ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                    Console.WriteLine($"¿Í»§¶ËÆô¶¯");
                     connectStatus = 1;
                 })
                 .OnClientClose(client =>
                 {
-                    Console.WriteLine($"ï¿½Í»ï¿½ï¿½Ë¹Ø±ï¿½");
+                    Console.WriteLine($"¿Í»§¶Ë¹Ø±Õ");
                     connectStatus = 0;
                 })
                 .OnException(ex =>
@@ -42,12 +42,12 @@ namespace WebSocketTools
                 })
                 .OnRecieve((client, bytes) =>
                 {
-                    Console.WriteLine($"ï¿½Í»ï¿½ï¿½ï¿½:ï¿½Õµï¿½{client.Ip}ï¿½ï¿½ï¿½ï¿½:{bytes}");
+                    Console.WriteLine($"¿Í»§¶Ë:ÊÕµ½{client.Ip}Êý¾Ý:{bytes}");
                     sbData.Append($"{bytes}\r\n");
                 })
                 .OnSend((client, bytes) =>
                 {
-                    Console.WriteLine($"ï¿½Í»ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:{bytes}");
+                    Console.WriteLine($"¿Í»§¶Ë:·¢ËÍÊý¾Ý:{bytes}");
                 })
                 .BuildAsync();
 
@@ -59,7 +59,7 @@ namespace WebSocketTools
             switch (connectStatus) 
             {
                 case 0:
-                    this.btnConnect.Text = "ï¿½ï¿½ï¿½ï¿½";
+                    this.btnConnect.Text = "Á¬½Ó";
 
                     this.txtRequest.Enabled = false;
                     this.btnSend.Enabled = false;
@@ -68,7 +68,7 @@ namespace WebSocketTools
                     this.btnCLose.Enabled = false;
                     break;
                 case 1:
-                    this.btnConnect.Text = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+                    this.btnConnect.Text = "ÒÑÁ¬½Ó";
 
                     this.txtRequest.Enabled = true;
                     this.btnSend.Enabled = true;
